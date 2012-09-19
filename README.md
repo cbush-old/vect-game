@@ -1,7 +1,7 @@
 vect!
 =====
 exploding space shooter game
-
+top-down scroller
 
 Copyright (C) 2012  Chris Bush
 
