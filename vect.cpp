@@ -41,7 +41,7 @@ int main(){
     SDL_WINDOWPOS_UNDEFINED,
     window_w,
     window_h,
-    SDL_WINDOW_OPENGL|SDL_WINDOW_FULLSCREEN
+    SDL_WINDOW_OPENGL//|SDL_WINDOW_FULLSCREEN
   );
   
   SDL_ShowCursor(0);
@@ -58,8 +58,12 @@ int main(){
     t++;
     
     
+    int tock = SDL_GetTicks();
+    
     // handle input 
     while(SDL_PollEvent(&e)){
+    
+      
       if(e.type==SDL_KEYDOWN){
         switch(e.key.keysym.sym){
           case SDLK_w:  player.yv = -player.boost;  break;
@@ -141,7 +145,12 @@ int main(){
     
     // present
     SDL_GL_SwapWindow(window);
-    SDL_Delay(10);
+    
+    int dt = 17 - SDL_GetTicks() - tock;
+    
+    if(dt < 0) dt = 0;
+    
+    SDL_Delay(dt);
    
   }
   
@@ -151,6 +160,7 @@ int main(){
   SDL_GL_DeleteContext(glcontext);
   SDL_DestroyWindow(window);
   SDL_Quit();
+  
   return 0;
   
 }
